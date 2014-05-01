@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
 		xmlns:android="http://schemas.android.com/apk/res/android"
         id="com.kolwit.pickcontact"
         version="1.0.0">
@@ -11,6 +11,10 @@
 	</description>
     <license>MIT Licence</license>
     <keywords>phonegap,cordova,addressbook,contacts,contactpicker,android,ios</keywords>
+	
+	<engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines> 
 
     <js-module src="www/PickContact.js" name="PickContact">
         <clobbers target="PickContact" />
