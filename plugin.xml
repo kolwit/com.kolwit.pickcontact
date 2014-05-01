@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="com.kolwit.pickcontact"
+        version="0.2">
+
+    <name>Contact Chooser</name>
+    <description>Native contact-picker overlay, accessing the address book</description>
+    <license>MIT Licence</license>
+    <keywords>cordova,addressbook,contacts</keywords>
+
+    <js-module src="www/PickContact.js" name="PickContact">
+        <clobbers target="PickContact" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PickContact">
+                <param name="android-package" value="com.kolwit.cordova.PickContactPlugin"/>
+            </feature>
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.READ_CONTACTS" />
+        </config-file>
+
+        <source-file src="src/android/PickContactPlugin.java" target-dir="src/com/kolwit/cordova" />
+
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="PickContact">
+                <param name="ios-package" value="PickContact"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/PickContact.h" />
+        <source-file src="src/ios/PickContact.m" />
+
+        <framework src="AddressBook.framework" />
+        <framework src="AddressBookUI.framework" />
+
+    </platform>
+
+</plugin>
