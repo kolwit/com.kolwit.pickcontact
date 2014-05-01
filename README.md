@@ -21,9 +21,19 @@ The method which will return a JSON. Example:
 
 ```json
 {
+	firstName: "John",
+	lastName: "Doe",
     displayName: "John Doe",
+	nameFormated: "John Phil Doe",
+	nameMiddle: "Phil",
+	phoneNr: "+55 55 555 55",
     emailAddress: "john.doe@mail.com",
-    phoneNr: "+(55) 555-55-55"
+	address: "Rue 123, Brussels 1000, Belgium",
+	street: "Rue 123",
+	city: "Brussels",
+	region: "Brussels",
+	zipcode: "1000",
+	country: "BE"
 }
 ```
 
