@@ -9,7 +9,7 @@
     <description>
 		Native contact-picker overlay, accessing the address book
 	</description>
-    <license>MIT Licence</license>
+    <license>MIT</license>
     <keywords>phonegap,cordova,addressbook,contacts,contactpicker,android,ios</keywords>
 	
 	<engines>
