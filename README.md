@@ -39,9 +39,10 @@ The method which will return a JSON. Example:
 
 ## Installation Instructions
 
-The PiCkContact plugin provides support for Cordova's command-line tooling.
+The PickContact plugin provides support for Cordova's command-line tooling.
 Simply navigate to your project's root directory and execute the following command:
 
 ```
 cordova plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
 ```
+
