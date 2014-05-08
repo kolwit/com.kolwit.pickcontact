@@ -5,6 +5,10 @@ It is fully inspired on the ContactChooser plugin, the trigger to get data is th
 
 This plugin brings up a native iOS or Android contact-picker overlay, accessing the addressbook and returning the selected contact's name, email and phone number.
 
+## iOS limited result
+At this moment the plugin provides a limited result for iOS. If you have suggestions to extend the iOS part as the Android is; you are very welcome to contribute.
+
+
 ## Usage
 
 Example Usage
@@ -37,7 +41,7 @@ The method which will return a JSON. Example:
 }
 ```
 
-## Installation Instructions
+## Installation Instructions Cordova
 
 The PickContact plugin provides support for Cordova's command-line tooling.
 Simply navigate to your project's root directory and execute the following command:
@@ -46,3 +50,26 @@ Simply navigate to your project's root directory and execute the following comma
 cordova plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
 ```
 
+## Installation Instructions PhoneGap
+
+The PickContact plugin provides support for PhoneGap 3.0 CLI.
+Simply navigate to your project's root directory and execute the following command:
+
+```
+phonegap local plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
+```
+
+## Installation Instructions PhoneGap Build
+
+The PickContact plugin provides support for PhoneGap Build.
+Add the following to your config.xml to use version 1.0.1 of this plugin (recommended):
+
+```
+<gap:plugin name="com.kolwit.pickcontact" version="1.0.1" />
+```
+
+When you would like to automatically update when there is a new version of the plugin available, you can use the same command without the version code in it.
+
+```
+<gap:plugin name="com.kolwit.pickcontact" />
+```

@@ -26,7 +26,6 @@ public class PickContactPlugin extends CordovaPlugin {
 	    this.context = cordova.getActivity().getApplicationContext();
 
 		if (action.equals("chooseContact")) {
-
             Intent intent = new Intent(Intent.ACTION_PICK,
                      ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
             cordova.startActivityForResult(this, intent, CHOOSE_CONTACT);
@@ -50,21 +49,15 @@ public class PickContactPlugin extends CordovaPlugin {
 
             if (c.moveToFirst()) {
                 try {
-                    // String contactId = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Email.CONTACT_ID));
 					String contactId = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
-                    String displayName = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-                    // String email = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.DATA));
-					// String phoneNumber = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
-					
+                    String displayName = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));				
 
 					String nameFormated = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME));
 					String nameFamily = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
 					String nameGiven = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
 					String nameMiddle = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.StructuredName.MIDDLE_NAME));
 
-					
-					
-					 String phoneNumber = "";
+					String phoneNumber = "";
                     if (Integer.parseInt(c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
                         String query = ContactsContract.CommonDataKinds.Phone.CONTACT_ID;
                         Cursor phoneCursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
@@ -102,7 +95,6 @@ public class PickContactPlugin extends CordovaPlugin {
 					}
 					addressCur.close();
 					
-			
                     JSONObject contact = new JSONObject();
 					contact.put("firstName", nameGiven);
 					contact.put("lastName", nameFamily);
@@ -110,18 +102,16 @@ public class PickContactPlugin extends CordovaPlugin {
 					contact.put("nameFormated", nameFormated);
 					contact.put("nameMiddle", nameMiddle);
 					contact.put("phoneNr", phoneNumber);
-					contact.put("emailAddress", email);
-					// contact.put("contactId", contactId);
-					// contact.put("namePrefix", namePrefix);
-					// contact.put("nameSuffix", nameSuffix);
-					// contact.put("nameNick", nameNick);
-					
+					contact.put("emailAddress", email);					
 					contact.put("address", addressFormatted);
 					contact.put("street", addressStreetAddress);
 					contact.put("city", addressLocality);
 					contact.put("region", addressRegion);
 					contact.put("zipcode", addressPostalcode);
 					contact.put("country", addressCountry);
+					
+					// added `contactId` as suggested by aiksiang
+					contact.put("contactId", contactId);
                     callbackContext.success(contact);
 
                 } catch (Exception e) {
