@@ -37,7 +37,8 @@ The method which will return a JSON. Example:
 	city: "Brussels",
 	region: "Brussels",
 	zipcode: "1000",
-	country: "BE"
+	country: "BE",
+	contactId: "123",
 }
 ```
 
