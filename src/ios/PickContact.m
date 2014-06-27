@@ -1,7 +1,7 @@
 #import "PickContact.h"
 #import <Cordova/CDVAvailability.h>
 
-@implementation PickContact
+@implementation PickContact;
 @synthesize callbackID;
 
 - (void) chooseContact:(CDVInvokedUrlCommand*)command{
@@ -9,7 +9,7 @@
     
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
-    [self.viewController presentModalViewController:picker animated:YES];
+    [self.viewController presentViewController:picker animated:YES completion:nil];
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker
@@ -40,7 +40,7 @@
         [contact setObject:phoneNumber forKey: @"phoneNr"];
 
         [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact] toSuccessCallbackString:self.callbackID]];
-        [self.viewController dismissModalViewControllerAnimated:YES];
+        [self.viewController dismissViewControllerAnimated:YES completion:nil];
         return NO;
     }
     return YES;
@@ -52,7 +52,7 @@
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
-    [self.viewController dismissModalViewControllerAnimated:YES];
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
     [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                                               messageAsString:@"PickContact abort"]
                                             toErrorCallbackString:self.callbackID]];
