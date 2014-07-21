@@ -3,11 +3,14 @@
 This plugin is based on the plugins [com.monday.contact-chooser](https://github.com/monday-consulting/ContactChooser) and [org.apache.cordova.contacts](https://github.com/apache/cordova-plugin-contacts)
 It is fully inspired on the ContactChooser plugin, the trigger to get data is the same. The only thing different is the data that is returned. The plugin will return more data, for example phone numbers, emails and adresses (as in the cordova contacts plugin).
 
-This plugin brings up a native iOS or Android contact-picker overlay, accessing the addressbook and returning the selected contact's name, email and phone number.
+This plugin brings up a native Windows Phone 8, iOS or Android contact-picker overlay, accessing the address-book and returning the selected contact's name, email and phone number.
 
 ## iOS limited result
 At this moment the plugin provides a limited result for iOS. If you have suggestions to extend the iOS part as the Android is; you are very welcome to contribute.
 
+## version 1.0.4
+- Support added for Windows Phone 8 , based on [org.apache.cordova.contacts](https://github.com/apache/cordova-plugin-contacts)
+- Fixed iOS picker, thanks to @ChristianPapathanasiou for providing the fix! Thank you again!
 
 ## Usage
 
@@ -63,10 +66,10 @@ phonegap local plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
 ## Installation Instructions PhoneGap Build
 
 The PickContact plugin provides support for PhoneGap Build.
-Add the following to your config.xml to use version 1.0.1 of this plugin (recommended):
+Add the following to your config.xml to use version 1.0.3 of this plugin (recommended):
 
 ```
-<gap:plugin name="com.kolwit.pickcontact" version="1.0.1" />
+<gap:plugin name="com.kolwit.pickcontact" version="1.0.3" />
 ```
 
 When you would like to automatically update when there is a new version of the plugin available, you can use the same command without the version code in it.

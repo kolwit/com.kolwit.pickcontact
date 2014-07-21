@@ -3,14 +3,14 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
 		xmlns:android="http://schemas.android.com/apk/res/android"
         id="com.kolwit.pickcontact"
-        version="1.0.3">
+        version="1.0.4">
 
     <name>Pick Contact Details</name>
     <description>
 		Native contact-picker overlay, accessing the address book
 	</description>
     <license>MIT</license>
-    <keywords>phonegap,cordova,addressbook,contacts,contactpicker,android,ios</keywords>
+    <keywords>phonegap,cordova,addressbook,contacts,contactpicker,android,ios,wp8</keywords>
 	
 	<engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -52,6 +52,25 @@
         <framework src="AddressBook.framework" />
         <framework src="AddressBookUI.framework" />
 
+    </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="PickContact">
+                <param name="wp-package" value="PickContact"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_CONTACTS" />
+        </config-file>
+
+        <source-file src="src/wp/PickContact.cs" />
+        <source-file src="src/wp/PickContactHelper.cs" />
+        <source-file src="src/wp/PickContactPicker.xaml" />
+        <source-file src="src/wp/PickContactPicker.xaml.cs" />
+        <source-file src="src/wp/PickContactTask.cs" />
     </platform>
 
 </plugin>
