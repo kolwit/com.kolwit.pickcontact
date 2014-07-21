@@ -66,10 +66,10 @@ phonegap local plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
 ## Installation Instructions PhoneGap Build
 
 The PickContact plugin provides support for PhoneGap Build.
-Add the following to your config.xml to use version 1.0.3 of this plugin (recommended):
+Add the following to your config.xml to use version 1.0.4 of this plugin (recommended):
 
 ```
-<gap:plugin name="com.kolwit.pickcontact" version="1.0.3" />
+<gap:plugin name="com.kolwit.pickcontact" version="1.0.4" />
 ```
 
 When you would like to automatically update when there is a new version of the plugin available, you can use the same command without the version code in it.
