@@ -1,7 +1,7 @@
 # PickContact plugin for Cordova 3.x and PhoneGap
 
 This plugin is based on the plugins [com.monday.contact-chooser](https://github.com/monday-consulting/ContactChooser) and [org.apache.cordova.contacts](https://github.com/apache/cordova-plugin-contacts)
-It is fully inspired on the ContactChooser plugin, the trigger to get data is the same. The only thing different is the data that is returned. The plugin will return more data, for example phone numbers, emails and adresses (as in the cordova contacts plugin).
+It is fully inspired on the ContactChooser plugin, the trigger to get data is the same. The only thing different is the data that is returned. The plugin will return more data, for example phone numbers, emails and addresses (as in the cordova contacts plugin).
 
 This plugin brings up a native Windows Phone 8, iOS or Android contact-picker overlay, accessing the address-book and returning the selected contact's name, email and phone number.
 
@@ -18,7 +18,7 @@ Example Usage
 
 ```js
 window.plugins.PickContact.chooseContact(function (contactInfo) {
-    setTimeout(function () { // use timeout to fix iOS alert problem
+    setTimeout(function () { // use time-out to fix iOS alert problem
         alert(contactInfo.displayName + " " + contactInfo.emailAddress + " " + contactInfo.phoneNr );
     }, 0);
 });
@@ -45,7 +45,7 @@ The method which will return a JSON. Example:
 }
 ```
 
-## Installation Instructions Cordova (manually)
+## Installation Instructions Cordova
 
 The PickContact plugin provides support for Cordova's command-line tooling.
 Simply navigate to your project's root directory and execute the following command:
