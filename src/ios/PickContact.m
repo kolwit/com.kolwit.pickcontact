@@ -13,9 +13,11 @@
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+                         shouldContinueAfterSelectingPerson:(ABRecordRef)person
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier
+
+
 {
     if (kABPersonPhoneProperty == property)
     {
@@ -55,6 +57,16 @@
     [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                                               messageAsString:@"PickContact abort"]
                                             toErrorCallbackString:self.callbackID]];
+}
+
+
+//ios 8 support
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker
+    didSelectPerson:(ABRecordRef)person
+    property:(ABPropertyID)property
+    identifier:(ABMultiValueIdentifier)identifier {
+
+[self peoplePickerNavigationController:peoplePicker shouldContinueAfterSelectingPerson:person property:property identifier:identifier];
 }
 
 @end
