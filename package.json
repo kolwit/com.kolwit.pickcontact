@@ -1,0 +1,49 @@
+{
+  "name": "com.kolwit.pickcontact",
+  "version": "1.0.5",
+  "description": "\r\n\t\tNative contact-picker overlay, accessing the address book\r\n\t",
+  "cordova": {
+    "id": "com.kolwit.pickcontact",
+    "platforms": [
+      "android",
+      "ios",
+      "wp8"
+    ]
+  },
+  "dependencies": {
+    "ant": "undefined0.2.0"
+  },
+  "devDependencies": {
+    "ant": "undefined0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kolwit/com.kolwit.pickcontact.git"
+  },
+  "keywords": [
+    "phonegap",
+    "cordova",
+    "addressbook",
+    "contacts",
+    "contactpicker",
+    "android",
+    "ios",
+    "wp8",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-wp8"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Kolwit Ltd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kolwit/com.kolwit.pickcontact/issues"
+  },
+  "homepage": "https://github.com/kolwit/com.kolwit.pickcontact#readme"
+}
