@@ -3,6 +3,7 @@
 
 @implementation PickContact;
 @synthesize callbackID;
+CDVPluginResult* pluginResult;
 
 - (void) chooseContact:(CDVInvokedUrlCommand*)command{
     self.callbackID = command.callbackId;
@@ -12,17 +13,44 @@
     [self.viewController presentViewController:picker animated:YES completion:nil];
 }
 
+
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker
+                         didSelectPerson:(ABRecordRef)person
+                                property:(ABPropertyID)property
+                              identifier:(ABMultiValueIdentifier)identifier {
+    
+    [self peoplePickerNavigationController:peoplePicker shouldContinueAfterSelectingPerson:person property:property identifier:identifier];
+}
+
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker
-                         shouldContinueAfterSelectingPerson:(ABRecordRef)person
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier
 
 
 {
     if (kABPersonPhoneProperty == property)
-    {
-        ABMultiValueRef multi = ABRecordCopyValue(person, kABPersonPhoneProperty);
-        int index = ABMultiValueGetIndexForIdentifier(multi, identifier);
+    {	   
+	    NSString *email = @"";
+		ABMultiValueRef multiEmails = ABRecordCopyValue(person, kABPersonEmailProperty);
+		
+		NSLog(@"property:%d",property);
+		NSLog(@"kABPersonEmailProperty:%d",kABPersonEmailProperty);
+		NSLog(@"kABPersonPhoneProperty:%d",kABPersonPhoneProperty);
+		NSLog(@"identifier:%d",identifier);
+		NSLog(@"ABMultiValueGetCount(multiEmails):%ld",ABMultiValueGetCount(multiEmails));
+		if (kABPersonEmailProperty == property)
+		{
+			int index = ABMultiValueGetIndexForIdentifier(multiEmails, identifier);
+			NSLog(@"index:%d",index);
+			email = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multiEmails, index);
+			NSLog(@"email:%@",email);
+		}
+		else if (ABMultiValueGetCount(multiEmails) > 0)
+		{
+			email = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multiEmails, 0);
+		}
+	   
 
         NSString *displayName = (__bridge NSString *)ABRecordCopyCompositeName(person);
 
@@ -36,11 +64,13 @@
             }
         }
 
-        NSMutableDictionary* contact = [NSMutableDictionary dictionaryWithCapacity:2];
+        NSMutableDictionary* contact = [NSMutableDictionary dictionaryWithCapacity:3];
+		[contact setObject:email forKey: @"emailAddress"];
         [contact setObject:displayName forKey: @"displayName"];
         [contact setObject:phoneNumber forKey: @"phoneNr"];
-
-        [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact] toSuccessCallbackString:self.callbackID]];
+		
+		CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact];
+		[self.commandDelegate sendPluginResult:result callbackId:self.callbackID];
         [self.viewController dismissViewControllerAnimated:YES completion:nil];
         return NO;
     }
@@ -52,21 +82,12 @@
     return YES;
 }
 
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                                messageAsString:@"PickContact abort"];
+    [self.commandDelegate sendPluginResult:result callbackId:self.callbackID];
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
-    [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
-                                                              messageAsString:@"PickContact abort"]
-                                            toErrorCallbackString:self.callbackID]];
-}
-
-
-//ios 8 support
-- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker
-    didSelectPerson:(ABRecordRef)person
-    property:(ABPropertyID)property
-    identifier:(ABMultiValueIdentifier)identifier {
-
-[self peoplePickerNavigationController:peoplePicker shouldContinueAfterSelectingPerson:person property:property identifier:identifier];
 }
 
 @end

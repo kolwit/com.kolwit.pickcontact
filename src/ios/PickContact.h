@@ -3,7 +3,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <Cordova/CDVPlugin.h>
 
-@interface PickContact : CDVPlugin <ABPersonViewControllerDelegate>
+@interface PickContact : CDVPlugin <ABPersonViewControllerDelegate,ABPeoplePickerNavigationControllerDelegate>
 
 @property(strong) NSString* callbackID;
 
