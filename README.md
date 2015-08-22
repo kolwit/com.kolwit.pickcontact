@@ -8,6 +8,13 @@ This plugin brings up a native Windows Phone 8, iOS or Android contact-picker ov
 ## iOS limited result
 At this moment the plugin provides a limited result for iOS. If you have suggestions to extend the iOS part as the Android is; you are very welcome to contribute.
 
+## Windows 10
+Coming soon, first try in 1.0.6
+
+## version 1.0.6
+- Adding support for Windows 10
+- Updated for iOS 8
+
 ## version 1.0.4
 - Support added for Windows Phone 8 , based on [org.apache.cordova.contacts](https://github.com/apache/cordova-plugin-contacts)
 - Fixed iOS picker, thanks to @ChristianPapathanasiou for providing the fix! Thank you again!

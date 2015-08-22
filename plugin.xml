@@ -2,14 +2,14 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
 		xmlns:android="http://schemas.android.com/apk/res/android"
         id="com.kolwit.pickcontact"
-        version="1.0.5">
+        version="1.0.6">
 
     <name>Pick Contact Details</name>
     <description>
 		Native contact-picker overlay, accessing the address book
 	</description>
     <license>MIT</license>
-    <keywords>phonegap,cordova,addressbook,contacts,contactpicker,android,ios,wp8</keywords>
+    <keywords>phonegap,cordova,addressbook,contacts,contactpicker,android,ios,wp8,windows</keywords>
 	
 	<engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -70,6 +70,19 @@
         <source-file src="src/wp/PickContactPicker.xaml" />
         <source-file src="src/wp/PickContactPicker.xaml.cs" />
         <source-file src="src/wp/PickContactTask.cs" />
+    </platform>
+	
+	<!-- Windows -->
+    <platform name="windows">
+        <js-module src="src/windows/PickContactProxy.js" name="PickContactProxy">
+            <merges target="" />
+        </js-module>
+        <config-file target="package.phone.appxmanifest" parent="/Package/Capabilities">
+            <m3:Capability Name="contacts" />
+        </config-file>
+        <config-file target="package.appxmanifest" parent="/Package/Capabilities" versions=">=10.0.0">
+            <uap:Capability Name="contacts" />
+        </config-file>
     </platform>
 
 </plugin>
