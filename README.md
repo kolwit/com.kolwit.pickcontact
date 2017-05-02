@@ -11,6 +11,9 @@ At this moment the plugin provides a limited result for iOS. If you have suggest
 ## Windows 10
 Coming soon, first try in 1.0.6
 
+## version 1.0.7
+- Fix for iOS 9
+
 ## version 1.0.6
 - Adding support for Windows 10
 - Updated for iOS 8
