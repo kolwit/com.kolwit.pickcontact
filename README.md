@@ -11,17 +11,6 @@ At this moment the plugin provides a limited result for iOS. If you have suggest
 ## Windows 10
 Coming soon, first try in 1.0.6
 
-## version 1.0.7
-- Fix for iOS 9
-
-## version 1.0.6
-- Adding support for Windows 10
-- Updated for iOS 8
-
-## version 1.0.4
-- Support added for Windows Phone 8 , based on [org.apache.cordova.contacts](https://github.com/apache/cordova-plugin-contacts)
-- Fixed iOS picker, thanks to @ChristianPapathanasiou for providing the fix! Thank you again!
-
 ## Usage
 
 Example Usage
@@ -59,11 +48,6 @@ The method which will return a JSON. Example:
 
 The PickContact plugin provides support for Cordova's command-line tooling.
 Simply navigate to your project's root directory and execute the following command:
-
-```
-cordova plugin add com.kolwit.pickcontact
-```
-or
 ```
 cordova plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
 ```
@@ -72,27 +56,19 @@ cordova plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
 
 The PickContact plugin provides support for PhoneGap 3.0 CLI.
 Simply navigate to your project's root directory and execute the following command:
-
-
-```
-phonegap plugin add com.kolwit.pickcontact
-```
-or
 ```
 phonegap local plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
 ```
 
-## Installation Instructions PhoneGap Build
+# version history
 
-The PickContact plugin provides support for PhoneGap Build.
-Add the following to your config.xml to use the last version of this plugin:
+## version 1.0.8
+- Fix for iOS 9 (ABPeoplePickerNavigationController -> CNContactPickerViewController)
 
-```
-<gap:plugin name="com.kolwit.pickcontact" />
-```
+## version 1.0.6
+- Adding support for Windows 10
+- Updated for iOS 8
 
-When you would like to get it fixed on one version, you should put the version in the tag. Something like this:
-
-```
-<gap:plugin name="com.kolwit.pickcontact" version="1.0.3" />
-```
+## version 1.0.4
+- Support added for Windows Phone 8 , based on [org.apache.cordova.contacts](https://github.com/apache/cordova-plugin-contacts)
+- Fixed iOS picker, thanks to @ChristianPapathanasiou for providing the fix! Thank you again!

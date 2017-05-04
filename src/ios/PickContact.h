@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import <AddressBookUI/AddressBookUI.h>
+#import <ContactsUI/ContactsUI.h>
 #import <Cordova/CDVPlugin.h>
 
-@interface PickContact : CDVPlugin <ABPersonViewControllerDelegate>
+@interface PickContact : CDVPlugin <CNContactPickerDelegate>
 
 @property(strong) NSString* callbackID;
 
