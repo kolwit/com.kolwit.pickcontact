@@ -1,5 +1,6 @@
 package com.kolwit.cordova;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.PermissionHelper;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,6 +27,8 @@ public class PickContactPlugin extends CordovaPlugin {
     public static final int REQUEST_CANCELED = 3;
     public static final int CONTACT_NOT_AVAILABLE = 4;
 
+    String [] permissions = { Manifest.permission.READ_CONTACTS };
+
 	@Override
 	public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
         this.callbackContext = callbackContext;
@@ -33,6 +37,10 @@ public class PickContactPlugin extends CordovaPlugin {
         if (android.os.Build.VERSION.RELEASE.startsWith("1.")) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, NOT_SUPPORTED_ERROR));
             return true;
+        }
+
+        if(!hasPermisssion()) {
+            PermissionHelper.requestPermissions(this, 0, permissions);
         }
 
 		if (action.equals("chooseContact")) {
@@ -46,6 +54,28 @@ public class PickContactPlugin extends CordovaPlugin {
 		}
 		return true;
 	}
+
+
+    public boolean hasPermisssion() {
+        for(String p : permissions)
+        {
+            if(!PermissionHelper.hasPermission(this, p))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+     * We override this so that we can access the permissions variable, which no longer exists in
+     * the parent class, since we can't initialize it reliably in the constructor!
+     */
+
+    public void requestPermissions(int requestCode)
+    {
+        PermissionHelper.requestPermissions(this, requestCode, permissions);
+    }
 
 	/**
 	 * Called when user picks contact.

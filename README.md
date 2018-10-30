@@ -62,6 +62,9 @@ phonegap local plugin add https://github.com/kolwit/com.kolwit.pickcontact.git
 
 # version history
 
+## version 1.0.9
+- Fix for Android. Permission (READ_CONTACTS) check and request.
+
 ## version 1.0.8
 - Fix for iOS 9 (ABPeoplePickerNavigationController -> CNContactPickerViewController)
 
